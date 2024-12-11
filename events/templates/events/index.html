@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <title>Создать событие</title>
+</head>
+<body>
+    <h1>Создать новое событие</h1>
+        <form method="post">
+        {% csrf_token %}
+            h2>Настройки</h2>
+        <label>Тема:</label>
+        <select name="theme">
+            <option value="light" {% if theme == 'light' %}selected{% endif %}>Светлая</option>
+            <option value="dark" {% if theme == 'dark' %}selected{% endif %}>Темная</option>
+        </select>
+
+        <label>Язык:</label>
+        <select name="language">
+            <option value="en" {% if language == 'en' %}selected{% endif %}>English</option>
+            <option value="ru" {% if language == 'ru' %}selected{% endif %}>Русский</option>
+        </select>
+
+        <button type="submit" name="settings">Сохранить настройки</button>
+    </form>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+    </form>
+</body>
+</html>
